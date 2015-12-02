@@ -29,13 +29,13 @@ class Question(models.Model):
 	def __str__(self):
 		return self.title	
 
-class Question_Answers(models.Model):
+class Answer(models.Model):
 	user = models.ForeignKey(User)
 	question = models.ForeignKey(Question)
 	answer = models.TextField()
 	votes = models.IntegerField()
 	ct = models.DateTimeField(auto_now=True)
 	class Meta:
-		db_table = "question_answers"
+		db_table = "answer"
 	def __str__(self):
 		return self.answer	
