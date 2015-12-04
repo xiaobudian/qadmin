@@ -10,6 +10,7 @@ class Tag(models.Model):
 	name = models.CharField(max_length=30)
 	description = models.TextField()
 	user = models.ForeignKey(User)
+	reputation = models.IntegerField(default=0)
 	class Meta:
 		db_table = "tag"
 	def __str__(self):
@@ -20,9 +21,9 @@ class Question(models.Model):
 	content = models.TextField()
 	ct = models.DateTimeField(auto_now=True)
 	user = models.ForeignKey(User)
-	votes = models.IntegerField()
-	answers = models.IntegerField()
-	views = models.IntegerField()
+	votes = models.IntegerField(default=0)
+	answers = models.IntegerField(default=0)
+	views = models.IntegerField(default=0)
 	tags = models.ManyToManyField(Tag)
 	class Meta:
 		db_table = "question"
@@ -33,7 +34,7 @@ class Answer(models.Model):
 	user = models.ForeignKey(User)
 	question = models.ForeignKey(Question)
 	answer = models.TextField()
-	votes = models.IntegerField()
+	votes = models.IntegerField(default=0)
 	ct = models.DateTimeField(auto_now=True)
 	class Meta:
 		db_table = "answer"
