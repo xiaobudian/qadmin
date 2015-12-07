@@ -11,6 +11,7 @@ class Tag(models.Model):
 	description = models.TextField()
 	user = models.ForeignKey(User)
 	reputation = models.IntegerField(default=0)
+	ct = models.DateTimeField(auto_now=True)
 	class Meta:
 		db_table = "tag"
 	def __str__(self):
@@ -40,3 +41,10 @@ class Answer(models.Model):
 		db_table = "answer"
 	def __str__(self):
 		return self.answer	
+
+class Profile(models.Model):
+	pic = models.CharField(max_length=100)
+	reputation = models.IntegerField(default=0)
+	user = models.ForeignKey(User)
+	class Meta:
+		db_table = "profile"
