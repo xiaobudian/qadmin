@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Tag(models.Model):
 
 	name = models.CharField(max_length=30)
-	description = models.TextField()
+	description = models.TextField(null=True)
 	user = models.ForeignKey(User)
 	reputation = models.IntegerField(default=0)
 	ct = models.DateTimeField(auto_now=True)
@@ -46,5 +46,9 @@ class Profile(models.Model):
 	pic = models.CharField(max_length=100)
 	reputation = models.IntegerField(default=0)
 	user = models.ForeignKey(User)
+	location = models.CharField(max_length=100,null=True)
+	aboutme = models.CharField(max_length=500,null=True)
+	realname = models.CharField(max_length=50,null=True)
+	birthday = models.DateTimeField(blank=True,null=True)
 	class Meta:
 		db_table = "profile"
