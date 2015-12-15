@@ -46,16 +46,6 @@ class Question_Vote(models.Model):
 		unique_together = (("user", "question"),)
 		db_table = "qvote"
 
-
-class Favorite_Question(models.Model):
-	user 		= models.ForeignKey(User)
-	question 	= models.ForeignKey(Question)
-	ct 			= models.DateTimeField(auto_now=True)
-
-	class Meta:
-		db_table = "fquestion"
-		unique_together = (("user", "question"),)
-
 class Answer(models.Model):
 	user 		= models.ForeignKey(User)
 	question 	= models.ForeignKey(Question)
@@ -67,7 +57,28 @@ class Answer(models.Model):
 		db_table = "answer"
 
 	def __str__(self):
-		return self.answer	
+		return self.answer
+
+class Answer_Vote(models.Model):
+	user 		= models.ForeignKey(User)
+	answer 	= models.ForeignKey(Answer)
+	ct 			= models.DateTimeField(auto_now=True)
+	vote_type 	= models.IntegerField(null=False)
+
+	class Meta:
+		unique_together = (("user", "answer"),)
+		db_table = "avote"
+
+class Favorite_Question(models.Model):
+	user 		= models.ForeignKey(User)
+	question 	= models.ForeignKey(Question)
+	ct 			= models.DateTimeField(auto_now=True)
+
+	class Meta:
+		db_table = "fquestion"
+		unique_together = (("user", "question"),)
+
+	
 
 class Profile(models.Model):
 	pic 		= models.CharField(max_length=100)
